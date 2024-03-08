@@ -1,6 +1,6 @@
-# dependencies
-/node_modules
-
 # local env files
-.env*.local
 .env
+node_modules
+/node_modules
+node_modules 2
+.DS_Store
