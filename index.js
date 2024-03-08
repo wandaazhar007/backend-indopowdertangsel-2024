@@ -6,7 +6,7 @@ import SequelizeStore from 'connect-session-sequelize';
 import dotenv from 'dotenv';
 import cookieParser from 'cookie-parser';
 // import UserRouter from './routes/UserRouter.js'
-// import ProductRouter from './routes/ProductRouter.js';
+import ProductRoute from './routes/ProductRoute.js';
 import CategoryRouter from './routes/CategoryRoute.js'
 import db from './config/db_config.js';
 
@@ -49,7 +49,7 @@ app.use(express.json());
 app.use(FileUpload());
 app.use(express.static("public"));
 // app.use(UserRouter);
-// app.use(ProductRouter);
+app.use(ProductRoute);
 app.use(CategoryRouter);
 
 app.listen(PORT, () => console.log(`server running on port: ${PORT}`));
