@@ -5,7 +5,7 @@ import FileUpload from "express-fileupload";
 import SequelizeStore from 'connect-session-sequelize';
 import dotenv from 'dotenv';
 import cookieParser from 'cookie-parser';
-// import UserRouter from './routes/UserRouter.js'
+import UserRoute from './routes/UserRoute.js'
 import ProductRoute from './routes/ProductRoute.js';
 import CategoryRouter from './routes/CategoryRoute.js'
 import db from './config/db_config.js';
@@ -48,7 +48,7 @@ app.use(cookieParser());
 app.use(express.json());
 app.use(FileUpload());
 app.use(express.static("public"));
-app.use(UserRouter);
+app.use(UserRoute);
 app.use(ProductRoute);
 app.use(CategoryRouter);
 
