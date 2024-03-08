@@ -1,0 +1,16 @@
+{
+  "name": "backend-indopowdertangsel-2024",
+  "version": "1.0.0",
+  "description": "rest full api for website indopowdertangsel 2024",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "rest",
+    "full",
+    "api"
+  ],
+  "author": "wanda azhar",
+  "license": "ISC"
+}
