@@ -48,7 +48,7 @@ app.use(cookieParser());
 app.use(express.json());
 app.use(FileUpload());
 app.use(express.static("public"));
-// app.use(UserRouter);
+app.use(UserRouter);
 app.use(ProductRoute);
 app.use(CategoryRouter);
 
