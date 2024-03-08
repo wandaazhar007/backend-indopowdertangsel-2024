@@ -6,13 +6,13 @@ import { getUserById, getUsers, login, logout, registerUser, deleteUserById, upd
 
 const router = express.Router();
 
-router.get('/user', getUsers);
-router.get('/user/:id', getUserById);
-router.delete('/user/:id', deleteUserById);
-router.post('/user', registerUser);
-router.patch('/user/:id', updateUser);
-router.post('/login', login);
-router.delete('/logout', logout);
-router.get('/token', refreshToken);
+router.get('/api/user', getUsers);
+router.get('/api/user/:id', getUserById);
+router.delete('/api/user/:id', deleteUserById);
+router.post('/api/user', registerUser);
+router.patch('/api/user/:id', updateUser);
+router.post('/api/login', login);
+router.delete('/api/logout', logout);
+router.get('/api/token', refreshToken);
 
 export default router;
