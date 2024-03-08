@@ -1,6 +1,6 @@
 import express from "express";
 import { verifyToken } from "../middleware/VerifyToken.js";
-import { refreshToken } from "../controllers/RefreshToken.js";
+import { refreshToken } from "../middleware/RefreshToken.js";
 import { getUserById, getUsers, login, logout, registerUser, deleteUserById, updateUser } from "../controllers/UserController.js";
 
 
