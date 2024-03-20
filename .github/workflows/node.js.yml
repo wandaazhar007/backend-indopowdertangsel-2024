@@ -27,4 +27,4 @@ jobs:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
     - run: npm ci
-    - run: pm2 start npm --name "api.indopowdertangsel" -- start -- -p 5006
+    - run: pm2 start index.js --name "api.indopowdertangsel"
