@@ -35,4 +35,6 @@ jobs:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
     - run: npm ci
-    - run: pm2 start index.js --name "api.indopowdertangsel" -f
+    - run: pm2 stop api.indopowdertangsel
+    - run: pm2 delete api.indopowdertangsel
+    - run: pm2 start index.js --name "api.indopowdertangsel-2"
