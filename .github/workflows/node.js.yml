@@ -23,3 +23,16 @@ jobs:
         cache: 'npm'
     - run: npm ci
     - run: pm2 start index.js --name "api.indopowdertangsel-5"
+    - name: create env file
+      run: |
+            touch .env
+            echo ACCESS_TOKEN_SECRET=${{ secrets.ACCESS_TOKEN_SECRET }} >> .env
+            echo DB_DIALECT=${{ secrets.DB_DIALECT }} >> .env
+            echo DB_HOST=${{ secrets.DB_HOST }} >> .env
+            echo DB_NAME=${{ secrets.DB_NAME }} >> .env
+            echo DB_PASSWORD=${{ secrets.DB_PASSWORD }} >> .env
+            echo DB_PORT=${{ secrets.DB_PORT }} >> .env
+            echo DB_USER=${{ secrets.DB_USER }} >> .env
+            echo PORT=${{ secrets.PORT }} >> .env
+            echo REFRESH_TOKEN_SECRET=${{ secrets.REFRESH_TOKEN_SECRET }} >> .env
+            echo SESS_SECRET=${{ secrets.SESS_SECRET }} >> .env
