@@ -59,59 +59,113 @@ export const getProducts = async (req, res) => {
 
 
 // INFINITE SCROLL GET PRODUCTS
+// export const getProductInfinite = async (req, res) => {
+//   const lastId = parseInt(req.res.lastId) || 0;
+//   const limit = parseInt(req.res.limit) || 0;
+//   const search = req.body.query_search || "";
+
+//   let result = [];
+
+//   if (lastId < 1) {
+//     const results = await Products.findAll({
+//       where: {
+//         [Op.or]: [{
+//           name: {
+//             [Op.like]: [{
+//               name: {
+//                 [Op.like]: '%' + search + '%'
+//               }
+//             }]
+//           }
+//         }]
+//       },
+//       limit: limit,
+//       order: [
+//         ['id', 'DESC']
+//       ]
+//     });
+
+//     result = results;
+//   } else {
+//     const results = await Products.findAll({
+//       where: {
+//         id: {
+//           [Op.lt]: lastId
+//         },
+//         [Op.or]: [{
+//           name: {
+//             [Op.like]: '%' + search + '%'
+//           }
+//         }]
+//       },
+//       limit: limit,
+//       order: [
+//         ['id', 'DESC']
+//       ]
+//     });
+//     result = results;
+//   }
+
+//   res.json({
+//     result: result,
+//     lastId: result.length ? result[result.length - 1].id : 0,
+//     hasMore: result.length >= limit ? true : false
+//   });
+// }
+
 export const getProductInfinite = async (req, res) => {
   const lastId = parseInt(req.res.lastId) || 0;
   const limit = parseInt(req.res.limit) || 0;
-  const search = req.body.query_search || "";
+  const search = req.body.query_search || '';
 
   let result = [];
 
-  if (lastId < 1) {
-    const results = await Products.findAll({
-      where: {
-        [Op.or]: [{
-          name: {
-            [Op.like]: [{
+  try {
+    if (lastId === 0) {
+      const results = await Products.findAll({
+        where: {
+          [Op.or]: [
+            {
               name: {
-                [Op.like]: '%' + search + '%'
+                [Op.like]: `%${search}%`
               }
-            }]
-          }
-        }]
-      },
-      limit: limit,
-      order: [
-        ['id', 'DESC']
-      ]
-    });
-
-    result = results;
-  } else {
-    const results = await Products.findAll({
-      where: {
-        id: {
-          [Op.lt]: lastId
+            }
+          ]
         },
-        [Op.or]: [{
-          name: {
-            [Op.like]: '%' + search + '%'
-          }
-        }]
-      },
-      limit: limit,
-      order: [
-        ['id', 'DESC']
-      ]
-    });
-    result = results;
-  }
+        limit: limit,
+        order: [['id', 'DESC']]
+      });
+      result = results;
+    } else {
+      const results = await Products.findAll({
+        where: {
+          id: {
+            [Op.lt]: lastId
+          },
+          [Op.or]: [
+            {
+              name: {
+                [Op.like]: `%${search}%`
+              }
+            }
+          ]
+        },
+        limit: limit,
+        order: [['id', 'DESC']]
+      });
+      result = results;
+    }
 
-  res.json({
-    result: result,
-    lastId: result.length ? result[result.length - 1].id : 0,
-    hasMore: result.length >= limit ? true : false
-  });
-}
+    res.json({
+      result: result,
+      lastId: result.length ? result[result.length - 1].id : 0,
+      hasMore: result.length > limit ? true : false
+    });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'An error occurred while fetching products.' });
+  }
+};
 
 export const getProductsPerCategory = async (req, res) => {
   try {
