@@ -59,60 +59,6 @@ export const getProducts = async (req, res) => {
 
 
 // INFINITE SCROLL GET PRODUCTS
-// export const getProductInfinite = async (req, res) => {
-//   const lastId = parseInt(req.res.lastId) || 0;
-//   const limit = parseInt(req.res.limit) || 0;
-//   const search = req.body.query_search || "";
-
-//   let result = [];
-
-//   if (lastId < 1) {
-//     const results = await Products.findAll({
-//       where: {
-//         [Op.or]: [{
-//           name: {
-//             [Op.like]: [{
-//               name: {
-//                 [Op.like]: '%' + search + '%'
-//               }
-//             }]
-//           }
-//         }]
-//       },
-//       limit: limit,
-//       order: [
-//         ['id', 'DESC']
-//       ]
-//     });
-
-//     result = results;
-//   } else {
-//     const results = await Products.findAll({
-//       where: {
-//         id: {
-//           [Op.lt]: lastId
-//         },
-//         [Op.or]: [{
-//           name: {
-//             [Op.like]: '%' + search + '%'
-//           }
-//         }]
-//       },
-//       limit: limit,
-//       order: [
-//         ['id', 'DESC']
-//       ]
-//     });
-//     result = results;
-//   }
-
-//   res.json({
-//     result: result,
-//     lastId: result.length ? result[result.length - 1].id : 0,
-//     hasMore: result.length >= limit ? true : false
-//   });
-// }
-
 export const getProductInfinite = async (req, res) => {
   const lastId = parseInt(req.res.lastId) || 0;
   const limit = parseInt(req.res.limit) || 0;
