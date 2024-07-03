@@ -41,7 +41,7 @@ app.use(session({
 //   credentials: true,
 //   origin: '*'
 // }));
-app.use(cors({ credentials: true, origin: ['http://localhost:5173', 'http://localhost:4173', 'http://localhost:3000', 'http://localhost:3003', 'https://indopowdertangsel.com', 'https://admin.indopowdertangsel.com'] }));
+app.use(cors({ credentials: true, origin: ['http://localhost:5173', 'http://localhost:4173', 'http://localhost:3000', 'http://localhost:3003', 'https://indopowdertangsel.com', 'https://admin.indopowdertangsel.com', 'https://e-commerce-wanda-azhar.vercel.app'] }));
 // app.use(cors({ credentials: true, origin: '*' }));
 
 app.use(cookieParser());
